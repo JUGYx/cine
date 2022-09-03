@@ -19,7 +19,7 @@ $ cd cine
 ```
 - Install requiremnts.
 ```console
-$ pip install -r requirements
+$ pip install -r requirements.txt
 ```
 - Run.
 ```console
