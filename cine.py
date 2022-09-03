@@ -48,7 +48,7 @@ def episodePage(episode):
         print()
         Resolution=input(fmtc("none", "Select resolution (Enter=Best):> ")).strip()
         if Resolution == "":
-            Resolution=0
+            Resolution=-1
         else:
             try:
                 Resolution=int(Resolution)
