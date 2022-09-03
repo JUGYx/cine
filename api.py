@@ -2,7 +2,7 @@ import requests
 import json as JSON
 from utils import *
 
-Headers = {"user-agent":"Mozilla/5.0 (X11; Linux x86_64; rv:98.0) Gecko/20100101 Firefox/101.0"}
+Headers = {"user-agent":"Mozilla/5.0 (X11; Linux x86_64; rv:103.0) Gecko/20100101 Firefox/103.0"}
 
 def getRequest(url):
     try:
