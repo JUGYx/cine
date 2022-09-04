@@ -2,7 +2,7 @@
 
 import subprocess
 import api
-from utils import *
+from utils import fmtc, printerr
 
 def fmtShows(data):
     Number=1
@@ -94,7 +94,7 @@ def showPage(Show):
     print(fmtc("red", "Title: ")+fmtc("yellow", Show['en_title']))
     print(fmtc("red", "Description: ")+fmtc("yellow", Seasons['1']['1']['en_content']))
     print(fmtc("red", "Date: ")+fmtc("yellow", Show['mDate']))
-    print(fmtc("red", "Seasons: ")+fmtc("yellow", Show['season']))
+    print(fmtc("red", "Seasons: ")+fmtc("yellow", len(Seasons)))
     print(fmtc("red", "Categories: "), end="")
     for cat in Show['categories']:
         print(fmtc("yellow", cat['en_title']), end=" ")
