@@ -7,7 +7,7 @@ from utils import fmtc, printerr
 def fmtShows(data):
     Number=1
     print(fmtc("none", "Shows:"))
-    print(fmtc("red", "\t[0]: ")+fmtc("yellow", "Cancel")+fmtc("none", ".")) 
+    print(fmtc("red", "\t[00]: ")+fmtc("yellow", "Cancel")+fmtc("none", ".")) 
     for show in data:
         en_title=show['en_title']
         year=show['year']
@@ -15,7 +15,7 @@ def fmtShows(data):
             first_category=show['categories'][0]['en_title']
         except KeyError:
             first_category="No category"
-        print(fmtc("none", f"\t{fmtc('red', '['+str(Number)+']:')} {fmtc('yellow', en_title)} {fmtc('red', '| '+year)} {fmtc('red', '| '+first_category)}."))
+        print(fmtc('red',f"\t[{Number:0>2}]: ")+fmtc('yellow', en_title)+fmtc('red', f" | {year}")+fmtc('red', f" | {first_category}."))
         Number+=1
     print()
 
