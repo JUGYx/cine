@@ -41,9 +41,9 @@ def episodePage(episode):
     while True:
         Number=1
         print(fmtc("none", "Resolutions:"))
-        print(fmtc("red", "\t[0]:")+fmtc("yellow", "Cancel")+fmtc("none", "."))
+        print(fmtc("red", "\t[00]:")+fmtc("yellow", "Cancel")+fmtc("none", "."))
         for resolution in episodeInfo['v']:
-            print(fmtc("red", f"\t[{Number}]: ")+fmtc("yellow", resolution['resolution'])+fmtc("none", "."))
+            print(fmtc("red", f"\t[{Number:0>2}]: ")+fmtc("yellow", resolution['resolution'])+fmtc("none", "."))
             Number+=1
         print()
         Resolution=input(fmtc("none", "Select resolution (Enter=Best):> ")).strip()

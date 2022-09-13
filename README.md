@@ -17,7 +17,7 @@ A [Cinemana](https://cinemana.shabakaty.com) CLI based client.
 $ git clone https://github.com/JUGYx/cine
 $ cd cine
 ```
-- Install requiremnts.
+- Install requirements.
 ```console
 $ pip install -r requirements.txt
 ```
