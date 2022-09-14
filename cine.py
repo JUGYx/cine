@@ -46,7 +46,7 @@ def episodePage(episode):
             print(fmtc("red", f"\t[{Number:0>2}]: ")+fmtc("yellow", resolution['resolution'])+fmtc("none", "."))
             Number+=1
         print()
-        Resolution=input(fmtc("none", "Select resolution (Enter=Best):> ")).strip()
+        Resolution=input(fmtc("none", "Select resolution ")+fmtc("red","(Enter=Best):> ")).strip()
         if Resolution == "":
             Resolution=-1
         else:
@@ -91,17 +91,21 @@ def parseSelection(Selection):
 def showPage(Show):
     Seasons=api.season(Show)
     print()
-    print(fmtc("red", "Title: ")+fmtc("yellow", Show['en_title']))
-    print(fmtc("red", "Description: ")+fmtc("yellow", Seasons['1']['1']['en_content']))
-    print(fmtc("red", "Date: ")+fmtc("yellow", Show['mDate']))
-    print(fmtc("red", "Seasons: ")+fmtc("yellow", len(Seasons)))
+    print(fmtc("red", "Title: ")+fmtc("yellow", Show['en_title'])+".")
+    if(len(Seasons['1']['1']['en_content'])>45):
+        desc = Seasons['1']['1']['en_content'][0:45]
+    else:
+        desc = Seasons['1']['1']['en_content']
+    print(fmtc("red", "Description: ")+fmtc("yellow", desc+"..."))
+    print(fmtc("red", "Date: ")+fmtc("yellow", Show['mDate'])+".")
+    print(fmtc("red", "Seasons: ")+fmtc("yellow", len(Seasons))+".")
     print(fmtc("red", "Categories: "), end="")
     for cat in Show['categories']:
-        print(fmtc("yellow", cat['en_title']), end=" ")
+        print(fmtc("yellow", cat['en_title']), end=". ")
     print("\n")
     info()
     while True:
-        Selection=input(fmtc("none", "Episode (0=Cancel):> ")).strip()
+        Selection=input(fmtc("none", "Episode ")+fmtc("red", "(0=Cancel):> ")).strip()
         if Selection == "0":
             print()
             break
