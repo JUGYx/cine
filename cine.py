@@ -53,7 +53,7 @@ def episodePage(episode):
             try:
                 Resolution=int(Resolution)
                 if Resolution == 0:
-                    return None                    
+                    break
                 Resolution-=1
             except ValueError:
                 printerr("Must be a number.")
