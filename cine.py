@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 
+import sys
+
 import subprocess
 import api
+
 from utils import fmtc, printerr
 
 def fmtShows(data):
@@ -33,7 +36,7 @@ def play(translation, video):
             out = subprocess.check_output(["mpv",video])
     except FileNotFoundError:
         printerr("mpv not found. install it or add it to the environment path.")
-        exit(127)
+        sys.exit(127)
 
 def episodePage(episode):
     print()
@@ -185,8 +188,8 @@ if __name__ == "__main__":
         main()
     except KeyboardInterrupt:
         printerr("Terminated...")
-        exit(0)
+        sys.exit(0)
     except EOFError:
         printerr("Terminated...")
-        exit(0)        
+        sys.exit(0)        
     

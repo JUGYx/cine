@@ -1,3 +1,5 @@
+import sys
+
 import requests
 import json as JSON
 from utils import *
@@ -12,7 +14,7 @@ def getRequest(url):
                 return response
     except requests.exceptions.ConnectionError:
         printerr("HTTP request failed, check your network connection.")
-        exit(-3)
+        sys.exit(-3)
 
 def look(query, pn):
     apiUrl=f"https://cinemana.shabakaty.com/api/android/AdvancedSearch?level=0&videoTitle={query}&staffTitle={query}&year=1900,2022&type=series&page="+str(pn)+"&="
