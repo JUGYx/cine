@@ -10,7 +10,9 @@ from utils import fmtc, printerr
 def fmtShows(data):
     Number=1
     print(fmtc("none", "Shows:"))
-    print(fmtc("red", "\t[00]: ")+fmtc("yellow", "Cancel")+fmtc("none", ".")) 
+    print(fmtc("red", "\t[00]: ") \
+          +fmtc("yellow", "Cancel") \
+          +fmtc("none", ".")) 
     for show in data:
         en_title=show['en_title']
         year=show['year']
@@ -18,14 +20,26 @@ def fmtShows(data):
             first_category=show['categories'][0]['en_title']
         except KeyError:
             first_category="No category"
-        print(fmtc('red',f"\t[{Number:0>2}]: ")+fmtc('yellow', en_title)+fmtc('red', f" | {year}")+fmtc('red', f" | {first_category}."))
+        print(fmtc('red',f"\t[{Number:0>2}]: ") \
+              +fmtc('yellow', en_title) \
+              +fmtc('red', f" | {year}") \
+              +fmtc('red', f" | {first_category}."))
         Number+=1
     print()
 
 def info():
     print(fmtc("yellow", "[*] Use one of the following formats to specify season and episode:"))
-    print(fmtc("yellow", "\t- ")+fmtc("red", "S[Number]E[Number]")+fmtc("yellow",". Where S is season and E is episode, ")+fmtc("red", "i.e: s1E2")+fmtc("yellow", "."))
-    print(fmtc("yellow", "\t- ")+fmtc("red", "Number(, or : or ;)Number")+fmtc("yellow",". Write a comma, colon or a semicolon between season and episode, ")+fmtc("red","i.e: 1,2")+fmtc("yellow","."))
+    
+    print(fmtc("yellow", "\t- ") \
+          +fmtc("red", "S[Number]E[Number]") \
+          +fmtc("yellow",". Where S is season and E is episode, ") \
+          +fmtc("red", "i.e: s1E2")+fmtc("yellow", "."))
+    
+    print(fmtc("yellow", "\t- ") \
+          +fmtc("red", "Number(, or : or ;)Number") \
+          +fmtc("yellow",". Write a comma, colon or a semicolon between season and episode, ") \
+          +fmtc("red","i.e: 1,2") \
+          +fmtc("yellow","."))
     print()
 
 def play(translation, video):
@@ -44,12 +58,17 @@ def episodePage(episode):
     while True:
         Number=1
         print(fmtc("none", "Resolutions:"))
-        print(fmtc("red", "\t[00]:")+fmtc("yellow", "Cancel")+fmtc("none", "."))
+        print(fmtc("red", "\t[00]:") \
+              +fmtc("yellow", "Cancel") \
+              +fmtc("none", "."))
         for resolution in episodeInfo['v']:
-            print(fmtc("red", f"\t[{Number:0>2}]: ")+fmtc("yellow", resolution['resolution'])+fmtc("none", "."))
+            print(fmtc("red", f"\t[{Number:0>2}]: ") \
+                  +fmtc("yellow", resolution['resolution']) \
+                  +fmtc("none", "."))
             Number+=1
         print()
-        Resolution=input(fmtc("none", "Select resolution ")+fmtc("red","(Enter=Best):> ")).strip()
+        Resolution=input(fmtc("none", "Select resolution ") \
+                         +fmtc("red","(Enter=Best):> ")).strip()
         if Resolution == "":
             Resolution=-1
         else:
@@ -62,11 +81,12 @@ def episodePage(episode):
                 printerr("Must be a number.")
                 continue
         if Resolution >= len(episodeInfo['v']):
-                printerr("Select one of the above resolutions.")
-                continue
+            printerr("Select one of the above resolutions.")
+            continue
         if episodeInfo['t'] == "":
             print()
-            translation=input(fmtc("yellow", "Subtitles not included, subtitle file (optional):> ")).strip()
+            translation=input(fmtc("yellow", "Subtitles not included, subtitle file (optional):> ")) \
+                .strip()
         else:
             translation=episodeInfo['t']
         play(translation, episodeInfo['v'][Resolution]['videoUrl'])
@@ -94,21 +114,27 @@ def parseSelection(Selection):
 def showPage(Show):
     Seasons=api.season(Show)
     print()
-    print(fmtc("red", "Title: ")+fmtc("yellow", Show['en_title'])+".")
+    print(fmtc("red", "Title: ") \
+          +fmtc("yellow", Show['en_title'])+".")
     if(len(Seasons['1']['1']['en_content'])>45):
         desc = Seasons['1']['1']['en_content'][0:45]
     else:
         desc = Seasons['1']['1']['en_content']
-    print(fmtc("red", "Description: ")+fmtc("yellow", desc+"..."))
-    print(fmtc("red", "Date: ")+fmtc("yellow", Show['mDate'])+".")
-    print(fmtc("red", "Seasons: ")+fmtc("yellow", len(Seasons))+".")
+    print(fmtc("red", "Description: ") \
+          +fmtc("yellow", desc+"..."))
+    print(fmtc("red", "Date: ") \
+          +fmtc("yellow", Show['mDate'])+".")
+    print(fmtc("red", "Seasons: ") \
+          +fmtc("yellow", len(Seasons))+".")
     print(fmtc("red", "Categories: "), end="")
     for cat in Show['categories']:
         print(fmtc("yellow", cat['en_title']), end=". ")
     print("\n")
     info()
     while True:
-        Selection=input(fmtc("none", "Episode ")+fmtc("red", "(0=Cancel):> ")).strip()
+        Selection=input(fmtc("none", "Episode ") \
+                        +fmtc("red", "(0=Cancel):> ")) \
+                        .strip()
         if Selection == "0":
             print()
             break
@@ -132,18 +158,22 @@ def searchPage():
     Error=False
     while True:
         if not Page and not Error:
-            Query=input(fmtc("none", "Search Show")+fmtc("red"," :> ")).strip()
+            Query=input(fmtc("none", "Search Show") \
+                        +fmtc("red"," :> ")) \
+                        .strip()
             if Query == "":
                 printerr("Search query mustn't be empty.")
                 continue
         result=api.look(Query, PageNumber)
-        if result == [] or result == None:
+        if result == [] or result is None:
             printerr("Nothing found.")
             Page=False
             PageNumber=0
             continue
         fmtShows(result)
-        ShowInput=input(fmtc("none", "Select show ")+fmtc("red","(Enter=Next):> ")).strip()
+        ShowInput=input(fmtc("none", "Select show ") \
+                        +fmtc("red","(Enter=Next):> ")) \
+                        .strip()
         if ShowInput == "":
             PageNumber+=1
             Page=True
@@ -166,11 +196,10 @@ def searchPage():
             printerr("Select one of the above shows.")
             Error=True
             continue
-        else:
-            Error=False
-            Page=False
-            PageNumber=0
-            showPage(result[ShowNumber])
+        Error=False
+        Page=False
+        PageNumber=0
+        showPage(result[ShowNumber])
             
 def main():
     print(fmtc("red", "\n****************************"))
