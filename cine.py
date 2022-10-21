@@ -45,12 +45,15 @@ def info():
 def play(translation, video):
     try:
         if translation != "":
-            out = subprocess.check_output(["mpv",f"--sub-file={translation}",video])
+            out = subprocess.run(["mpv",f"--sub-file={translation}",video], capture_output=True, check=True)
         else:
-            out = subprocess.check_output(["mpv",video])
-    except FileNotFoundError:
+            out = subprocess.run(["mpv",video], capture_output=True, check=True)
+    except FileNotFoundError as e:
         printerr("mpv not found. install it or add it to the environment path.")
-        sys.exit(127)
+        sys.exit(e.errno)
+    except subprocess.CalledProcessError as e:
+        printerr("couldn't run mpv.")
+        sys.exit(e.returncode)
 
 def episodePage(episode):
     print()
