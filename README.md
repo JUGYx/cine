@@ -8,7 +8,7 @@ A [Cinemana](https://cinemana.shabakaty.com) CLI based client.
 - Not an official cinemana client.
 - Requires [mpv](https://mpv.io) to work.
 - I have no affiliation with the content providers available!.
-- Currently supports only shows, so no movies.
+- Shows only.
 - This is an Earthlink service available only in Iraq.
 
 ## Usage
